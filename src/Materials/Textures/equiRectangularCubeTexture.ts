@@ -4,6 +4,7 @@ import { Texture } from './texture';
 import { Scene } from "../../scene";
 import { Nullable } from "../../types";
 import { Tools } from '../../Misc/tools';
+import { FileTools } from '../../Misc/fileTools';
 import "../../Engines/Extensions/engine.rawTexture";
 import { Constants } from '../../Engines/constants';
 
@@ -96,6 +97,7 @@ export class EquiRectangularCubeTexture extends BaseTexture {
     private loadImage(loadTextureCallback: () => void, onError: Nullable<(message?: string, exception?: any) => void>): void {
         const canvas = document.createElement('canvas');
         const image = new Image();
+        FileTools.SetCorsBehavior(this.url, image);
 
         image.addEventListener('load', () => {
             this._width = image.width;
